@@ -1,13 +1,13 @@
+using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using AvaloniaApp1.ViewModels;
-using System;
+using Calc.ViewModels;
 
-namespace AvaloniaApp1
+namespace Calc
 {
     public class ViewLocator : IDataTemplate
     {
-        public Control Build(object data)
+        public IControl Build(object data)
         {
             var name = data.GetType().FullName!.Replace("ViewModel", "View");
             var type = Type.GetType(name);

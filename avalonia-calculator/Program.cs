@@ -2,9 +2,9 @@
 using Avalonia.ReactiveUI;
 using System;
 
-namespace AvaloniaApp1
+namespace Calc
 {
-    internal class Program
+    class Program
     {
         // Initialization code. Don't use any Avalonia, third-party APIs or any
         // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
@@ -17,7 +17,6 @@ namespace AvaloniaApp1
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .WithInterFont()
                 .LogToTrace()
                 .UseReactiveUI();
     }
