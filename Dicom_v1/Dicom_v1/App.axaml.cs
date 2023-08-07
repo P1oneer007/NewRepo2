@@ -21,7 +21,7 @@ namespace Dicom_v1
             {
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new ViewModels.MainWindowViewModel(),
+                    DataContext = new ViewModels.MainWindowViewModel(desktop.MainWindow),
                 };
             }
 

@@ -16,11 +16,13 @@ using Avalonia.Threading;
 using Dicom_v1.Views;
 using ReactiveUI;
 using System.Reactive;
+
 namespace Dicom_v1.ViewModels
 {
     internal class MainWindowViewModel : ReactiveObject
     {
         private MainWindowViewModel _dicomFileViewModel;
+        private Window _localWindow;
 
         public MainWindowViewModel GetDicomFileViewModel()
         {
@@ -39,34 +41,39 @@ namespace Dicom_v1.ViewModels
             set => this.RaiseAndSetIfChanged(ref _filePath, value);
         }
 
-        public ReactiveCommand<KeyEventArgs, Unit> OpenFileCommand { get; }
+        //public ReactiveCommand<KeyEventArgs, Unit> OpenFileCommand { get; }
+        public ReactiveCommand<Unit, Unit> OpenFileCommand { get; }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(Window localWindow)
         {
-            OpenFileCommand = ReactiveCommand.Create<KeyEventArgs>(OpenFile);
+            //OpenFileCommand = ReactiveCommand.Create<KeyEventArgs>(OpenFile);
+            OpenFileCommand = ReactiveCommand.Create(OpenFile);
             SetDicomFileViewModel(this);
+            _localWindow = localWindow;
         }
 
-        private void OpenFile(KeyEventArgs args)
-        {
-            if (args.Key != Key.Enter)
-                return;
+        //private void OpenFile(KeyEventArgs args)
 
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filters.Add(new FileDialogFilter { Extensions = { "dcm" }, Name = "DICOM Dump" });
+          private void OpenFile()
+          {
+              //if (args.Key != Key.Enter)
+              //    return;
 
-            var window = (MainWindow)args.Source;
-            openFileDialog.ShowAsync(window).ContinueWith(t =>
-            {
-                foreach (var filePath in t.Result)
-                {
-                    Dispatcher.UIThread.InvokeAsync(() =>
-                    {
-                        FilePath = filePath;
-                        // Здесь можно выполнить обработку DICOM-дампа
-                    });
-                }
-            });
-        }
+              OpenFileDialog openFileDialog = new OpenFileDialog();
+              openFileDialog.Filters.Add(new FileDialogFilter { Extensions = { "dcm" }, Name = "DICOM Dump" });
+
+              var window = _localWindow;
+              openFileDialog.ShowAsync(window).ContinueWith(t =>
+              {
+                  foreach (var filePath in t.Result)
+                  {
+                      Dispatcher.UIThread.InvokeAsync(() =>
+                      {
+                          FilePath = filePath;
+                          // Здесь можно выполнить обработку DICOM-дампа
+                      });
+                  }
+              });
+          }
     }
 }

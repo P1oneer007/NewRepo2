@@ -13,7 +13,8 @@ namespace Dicom_v1.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = _viewModel = new ViewModels.MainWindowViewModel();
+            
+           DataContext = _viewModel = new ViewModels.MainWindowViewModel(this);
         }
 
         private void InitializeComponent()

@@ -2,8 +2,9 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Dicom_v1"
+		xmlns:vm="clr-namespace:Dicom_v1.ViewModels"
         Title="MainWindow" Width="800" Height="600"
-		x:DataType="local:MainWindowViewModel">
+		x:DataType="vm:MainWindowViewModel">
 	<Grid>
 		<Button Content="Open DICOM File" Command="{Binding OpenFileCommand}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 	</Grid>

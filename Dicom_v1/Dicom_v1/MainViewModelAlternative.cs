@@ -16,7 +16,7 @@ using OpenFileDialog = Avalonia.Controls.OpenFileDialog;
 
 namespace Dicom_v1
 {
-    internal class MainViewModel
+    internal class MainViewModelAlternative
     {
         private Bitmap? _image;
         private Avalonia.Controls.Window window;
