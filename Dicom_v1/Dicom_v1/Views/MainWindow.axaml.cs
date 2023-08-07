@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Dicom_v1.ViewModels;
+using System;
 
 namespace Dicom_v1.Views
 {
@@ -19,6 +20,10 @@ namespace Dicom_v1.Views
         {
             AvaloniaXamlLoader.Load(this);
         }
-   
+
+        public static explicit operator MainWindow(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
