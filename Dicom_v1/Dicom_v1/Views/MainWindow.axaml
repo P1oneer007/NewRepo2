@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Dicom_v1"
         Title="MainWindow" Width="800" Height="600"
-		x:DataType="local:MainViewModel">
+		x:DataType="local:MainWindowViewModel">
 	<Grid>
 		<Button Content="Open DICOM File" Command="{Binding OpenFileCommand}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 	</Grid>

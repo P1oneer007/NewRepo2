@@ -8,12 +8,12 @@ namespace Dicom_v1.Views
 {
     public partial class MainWindow : Window
     {
-        private ViewModels.DicomFileViewModel _viewModel;
+        private ViewModels.MainWindowViewModel _viewModel;
 
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = _viewModel = new ViewModels.DicomFileViewModel();
+            DataContext = _viewModel = new ViewModels.MainWindowViewModel();
         }
 
         private void InitializeComponent()
