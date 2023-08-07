@@ -19,6 +19,7 @@ namespace Dicom_v1
     internal class MainViewModel
     {
         private Bitmap? _image;
+        private Avalonia.Controls.Window window;
 
         public Bitmap? Image
         {
@@ -30,17 +31,15 @@ namespace Dicom_v1
         {
             var openFileDialog = new OpenFileDialog();
             openFileDialog.Filters.Add(new FileDialogFilter() { Name = "DICOM files", Extensions = { "dcm" } });
-
-            /*var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
-            var result = await openFileDialog.ShowAsync(window);
-
+           // var window = ((IClassicDesktopStyleApplicationLifetime)Application.Current.ApplicationLifetime)?.MainWindow;
+           var result = await openFileDialog.ShowAsync(window);
             if (result != null && result.Length > 0)
             {
                 var filePath = result[0];
 
                 DumpDicom(filePath);
             }
-        }*/
+        }
 
             async Task DumpDicom(string filePath)
             {
@@ -62,4 +61,3 @@ namespace Dicom_v1
             }
         }
     }
-}
