@@ -8,6 +8,8 @@ namespace Dicom_v1
 {
     public partial class App : Application
     {
+        public static object MainWindow { get; internal set; }
+
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
