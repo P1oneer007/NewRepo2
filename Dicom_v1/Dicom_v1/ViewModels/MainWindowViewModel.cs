@@ -42,19 +42,21 @@ namespace Dicom_v1.ViewModels
         }
 
         //public ReactiveCommand<KeyEventArgs, Unit> OpenFileCommand { get; }
-        public ReactiveCommand<Unit, Unit> OpenFileCommand { get; }
-
+        // public ReactiveCommand<Unit, Unit> OpenFileCommand { get; }
+        public ReactiveCommand<System.Reactive.Unit, System.Threading.Tasks.Task> OpenFileCommand { get; }
         public MainWindowViewModel(Window localWindow)
         {
             //OpenFileCommand = ReactiveCommand.Create<KeyEventArgs>(OpenFile);
-            OpenFileCommand = ReactiveCommand.Create(OpenFile);
+            OpenFileCommand = ReactiveCommand.Create(OpenFileAsync);
+            OpenFileCommand.ThrownExceptions.Subscribe(ex => Console.WriteLine(ex));
+
             SetDicomFileViewModel(this);
             _localWindow = localWindow;
         }
 
         //private void OpenFile(KeyEventArgs args)
 
-          private void OpenFile()
+          private async Task OpenFileAsync()
           {
               //if (args.Key != Key.Enter)
               //    return;
@@ -62,18 +64,28 @@ namespace Dicom_v1.ViewModels
               OpenFileDialog openFileDialog = new OpenFileDialog();
               openFileDialog.Filters.Add(new FileDialogFilter { Extensions = { "dcm" }, Name = "DICOM Dump" });
 
-              var window = _localWindow;
-              openFileDialog.ShowAsync(window).ContinueWith(t =>
-              {
-                  foreach (var filePath in t.Result)
-                  {
-                      Dispatcher.UIThread.InvokeAsync(() =>
-                      {
-                          FilePath = filePath;
-                          // Здесь можно выполнить обработку DICOM-дампа
-                      });
-                  }
-              });
+            var window = _localWindow;
+           
+            var result = await openFileDialog.ShowAsync(window);
+
+            foreach (var filePath in result)
+            {
+                FilePath = filePath;
+            }
           }
+
+        /*
+          openFileDialog.ShowAsync(window).ContinueWith(t =>
+          {
+              foreach (var filePath in t.Result)
+              {
+                  Dispatcher.UIThread.InvokeAsync(() =>
+                  {
+                      FilePath = filePath;
+                      // Здесь можно выполнить обработку DICOM-дампа
+                  });
+              }
+          }); 
+       */
     }
 }

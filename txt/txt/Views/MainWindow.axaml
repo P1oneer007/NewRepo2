@@ -1,0 +1,23 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:txt.ViewModels"
+		xmlns:v="using:txt.Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="txt.Views.MainWindow"
+        x:DataType="vm:TxtViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="txt">
+
+    <!--<Design.DataContext>-->
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <!--<vm:TxtViewModel/>-->
+    <!--</Design.DataContext>-->
+	<Grid>
+		<Label Content="{Binding HiText}"></Label>
+	    <TextBox Text="{Binding Path, Mode=TwoWay}" Margin="0 0 100 500" Grid.Column="0"/>
+	    <Button Content="Browse" Click="OnBrowseClicked" Margin="0 0 0 0" Grid.Column="1" />
+    </Grid>
+</Window>
