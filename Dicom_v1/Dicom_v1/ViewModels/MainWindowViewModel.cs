@@ -1,19 +1,8 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
-using GalaSoft.MvvmLight.Command;
+﻿using Avalonia.Controls;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Avalonia.Controls.ApplicationLifetimes;
-using Microsoft.Extensions.Hosting;
-using Avalonia.Input;
-using Avalonia.Threading;
-using Dicom_v1.Views;
 using ReactiveUI;
 using System.Reactive;
 
@@ -41,51 +30,52 @@ namespace Dicom_v1.ViewModels
             set => this.RaiseAndSetIfChanged(ref _filePath, value);
         }
 
-        //public ReactiveCommand<KeyEventArgs, Unit> OpenFileCommand { get; }
-        // public ReactiveCommand<Unit, Unit> OpenFileCommand { get; }
+        private DcmFileViewModel _dcmFileViewModel;
+
+        public DcmFileViewModel DcmFileViewModel
+        {
+            get => _dcmFileViewModel;
+            set => SetProperty(ref _dcmFileViewModel, value);
+        }
+        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = "")
+        {
+            if (EqualityComparer<T>.Default.Equals(storage, value))
+            {
+                return false;
+            }
+
+            storage = value;
+            //OnPropertyChanged(propertyName);
+            return true;
+        }
+        public MainWindowViewModel()
+        {
+            DcmFileViewModel = new DcmFileViewModel();
+        }
+        public async Task LoadDcmFile(string filePath)
+        {
+            await DcmFileViewModel.LoadFileContent(filePath);
+        }
+        
         public ReactiveCommand<System.Reactive.Unit, System.Threading.Tasks.Task> OpenFileCommand { get; }
         public MainWindowViewModel(Window localWindow)
         {
-            //OpenFileCommand = ReactiveCommand.Create<KeyEventArgs>(OpenFile);
             OpenFileCommand = ReactiveCommand.Create(OpenFileAsync);
             OpenFileCommand.ThrownExceptions.Subscribe(ex => Console.WriteLine(ex));
-
             SetDicomFileViewModel(this);
             _localWindow = localWindow;
         }
 
-        //private void OpenFile(KeyEventArgs args)
-
-          private async Task OpenFileAsync()
+         private async Task OpenFileAsync()
           {
-              //if (args.Key != Key.Enter)
-              //    return;
-
-              OpenFileDialog openFileDialog = new OpenFileDialog();
-              openFileDialog.Filters.Add(new FileDialogFilter { Extensions = { "dcm" }, Name = "DICOM Dump" });
-
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filters.Add(new FileDialogFilter { Extensions = { "dcm" }, Name = "DICOM Dump" });
             var window = _localWindow;
-           
             var result = await openFileDialog.ShowAsync(window);
-
             foreach (var filePath in result)
             {
                 FilePath = filePath;
             }
-          }
-
-        /*
-          openFileDialog.ShowAsync(window).ContinueWith(t =>
-          {
-              foreach (var filePath in t.Result)
-              {
-                  Dispatcher.UIThread.InvokeAsync(() =>
-                  {
-                      FilePath = filePath;
-                      // Здесь можно выполнить обработку DICOM-дампа
-                  });
-              }
-          }); 
-       */
+         }
     }
 }

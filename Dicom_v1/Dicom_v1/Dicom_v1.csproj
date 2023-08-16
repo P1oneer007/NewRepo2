@@ -28,8 +28,20 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.2" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.2" />
     <PackageReference Include="AvaloniaGenerics.Dialogs" Version="0.1.2" />
+    <PackageReference Include="Dialogs.Avalonia" Version="0.1.29" />
+    <PackageReference Include="fo-dicom" Version="5.1.1" />
+    <PackageReference Include="fo-dicom.Desktop" Version="4.0.8" />
+    <PackageReference Include="fo-dicom.NetCore" Version="4.0.8" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="Microsoft.TeamFoundationServer.ExtendedClient" Version="16.205.1" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="PresentationFramework" Version="4.6.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Reference Include="WindowsBase">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.20\ref\net6.0\WindowsBase.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

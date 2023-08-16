@@ -24,7 +24,7 @@ namespace txt.ViewModels
                 }
             }
         }
-        public string HiText => "Hello, you are in";
+       // public string HiText => "Hello, you are in";
 
         public event PropertyChangedEventHandler PropertyChanged;
 

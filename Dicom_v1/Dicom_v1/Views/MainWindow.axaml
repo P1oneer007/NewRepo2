@@ -5,7 +5,9 @@
 		xmlns:vm="clr-namespace:Dicom_v1.ViewModels"
         Title="MainWindow" Width="800" Height="600"
 		x:DataType="vm:MainWindowViewModel">
-	<Grid>
-		<Button Content="Open DICOM File" Command="{Binding OpenFileCommand}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-	</Grid>
+
+   <StackPanel>
+        <Button Content="Open DICOM File" Click="OnBrowseClicked" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding DcmFileViewModel.FileContent}" IsReadOnly="True"/>
+   </StackPanel>
 </Window>

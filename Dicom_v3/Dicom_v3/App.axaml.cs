@@ -1,10 +1,11 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using txt.ViewModels;
-using txt.Views;
+using Dicom_v3.ViewModels;
+using Dicom_v3;
+using System;
 
-namespace txt
+namespace Dicom_v3
 {
     public partial class App : Application
     {
@@ -19,11 +20,12 @@ namespace txt
             {
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new TxtViewModel(),
+                    DataContext = new MainWindowViewModel(),
                 };
             }
 
             base.OnFrameworkInitializationCompleted();
-        }
+        } 
+        
     }
 }

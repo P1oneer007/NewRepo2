@@ -14,7 +14,7 @@ namespace txt.Views
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new TxtViewModel();
+            //this.DataContext = new TxtViewModel();
         }
 
 
@@ -26,17 +26,18 @@ namespace txt.Views
             dialog.AllowMultiple = true;
             var result = await dialog.ShowAsync(this);
             
-            if (result != null)
-            {
-                await GetPath();
-            }
+           // if (result != null)
+           // {
+           //     await GetPath();
+           // }
 
         }
 
         public void OnBrowseClicked(object sender, RoutedEventArgs args)
         {
             var context = this.DataContext as TxtViewModel;
-            context.Path = "path";
+           // context.Path = "path";
+            GetPath();
         }
     }
 }

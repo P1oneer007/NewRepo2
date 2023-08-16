@@ -1,0 +1,18 @@
+<Window x:Class="Dicom_v3.MainWindow"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Dicom_v3"
+        xmlns:vm="clr-namespace:Dicom_v3.ViewModels"
+        Title="DICOM Viewer" Width="800" Height="600">
+	
+	<Window.DataContext>
+		<vm:DicomInfoViewModel/>
+	</Window.DataContext>
+
+	<StackPanel>
+		<Button Content="Open DICOM" Command="{Binding OpenDicomCommand}"/>
+		<TextBlock Text="{Binding PatientName}" Margin="10"/>
+		<TextBlock Text="{Binding StudyDate}" Margin="10"/>
+		<!-- Другие привязки к свойствам DICOM -->
+	</StackPanel>
+</Window>

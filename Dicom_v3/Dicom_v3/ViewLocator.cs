@@ -1,9 +1,9 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Dicom_v1.ViewModels;
+using Dicom_v3.ViewModels;
 using System;
-
-namespace Dicom_v1
+using System.Xml;
+namespace Dicom_v3
 {
     public class ViewLocator : IDataTemplate
     {
