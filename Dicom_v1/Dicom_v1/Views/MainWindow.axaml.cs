@@ -14,6 +14,7 @@ using Avalonia;
 using Avalonia.ReactiveUI;
 using Dicom_v1.ViewModels;
 using System.Reactive;
+using Dicom;
 namespace Dicom_v1.Views
 {
     public partial class MainWindow : Window
@@ -48,10 +49,8 @@ namespace Dicom_v1.Views
 
         public async Task LoadFileContent(string filePath)
         {
-            filePath = @"С:\Feet2011_05_03_10_09_54_ID00000000113_raw_A_LUT_SevkavrentgenExtremity.dcm";
             // Чтение содержимого файла DCM
             string content = await File.ReadAllTextAsync(filePath);
-
             // Обновление свойства FileContent
             FileContent = content;
         }

@@ -37,5 +37,6 @@ namespace Dicom_v1
                 .WithInterFont()
                 .LogToTrace()
                 .UseReactiveUI();
+
     }
 }
