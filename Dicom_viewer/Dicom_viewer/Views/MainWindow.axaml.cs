@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Dicom;
 using System;
 using Dicom_viewer.ViewModels;
-
 namespace Dicom_viewer.Views
 {
     
@@ -28,19 +27,21 @@ namespace Dicom_viewer.Views
             // Обновление свойства FileContent
             FileContent = content;
         }
+
         public async Task GetPath()
         {
             var dialog = new OpenFileDialog();
             dialog.Filters.Add(new FileDialogFilter() { Name = "DICOM Files", Extensions = { "dcm" } });
             dialog.AllowMultiple = false;
             var result = await dialog.ShowAsync(this);
+      
             if (result.Length > 0)
             {
                 filePath = result[0];
                 viewModel.FileName = filePath;
                 viewModel.LoadDicomInfo();
             }
-
+            
         }
         public async Task studyInst()
         {

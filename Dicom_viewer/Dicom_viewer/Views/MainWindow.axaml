@@ -17,10 +17,16 @@
 
 	<StackPanel>
 		<Button Content="Open DICOM File" Click="OnBrowseClicked" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-	<TextBlock Text="{Binding PatientName}" Margin="10"/>
-		<TextBlock Text="{Binding StudyDate}" Margin="10"/>
-		<!-- -->
-		<!-- Другие привязки к свойствам DICOM -->
+		<DataGrid Margin="20" ItemsSource="{Binding Tags}"
+			      AutoGenerateColumns="True" IsReadOnly="True"
+			      GridLinesVisibility="All"
+				  BorderThickness="1" BorderBrush="Gray">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Tag" Binding="{Binding Tag}"/>
+				<DataGridTextColumn Header="VR" Binding="{Binding VR}"/>
+			<!--<DataGridTextColumn Header="Length" Binding="{Binding Length}"/>-->
+				<DataGridTextColumn Header="Value" Binding="{Binding Value}"/>
+			</DataGrid.Columns>
+		</DataGrid>
 	</StackPanel>
-	
 </Window>
