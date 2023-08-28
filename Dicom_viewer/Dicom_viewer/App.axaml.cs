@@ -17,29 +17,11 @@ namespace Dicom_viewer
 
         public override void OnFrameworkInitializationCompleted()
         {
-             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            {
-                desktop.MainWindow = new MainWindow(new DicomInfoViewModel());                
-            }
-             
-         /*
-           try
-            {
-                if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-                {
-                    desktop.MainWindow = new MainWindow
-                    {
-                        DataContext = new MainWindowViewModel(),
-                    };
-                }
-            }
-            catch (Exception ex)
-            {
-                // Обработка исключения (вывод сообщения об ошибке в лог или сообщения пользователю)
-            }
-         */
-
-            base.OnFrameworkInitializationCompleted();
+           if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+           {
+             desktop.MainWindow = new MainWindow(new DicomInfoViewModel());                
+           }
+           base.OnFrameworkInitializationCompleted();
         }
     }
 }

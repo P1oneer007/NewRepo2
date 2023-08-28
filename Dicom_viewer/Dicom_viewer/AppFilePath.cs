@@ -8,6 +8,6 @@ namespace Dicom_viewer
 {
     public class AppSettings
     {
-       public string FilePath { get; set; }
+        public string FilePath { get; set; }
     }
 }

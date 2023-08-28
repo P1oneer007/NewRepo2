@@ -7,16 +7,15 @@
         x:Class="Dicom_viewer.Views.MainWindow"
         x:DataType="vm:DicomInfoViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Dicom_viewer" Width="800" Height="600">
+        Title="Dicom_viewer" Width="950" Height="600">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
 		<vm:DicomInfoViewModel/>
     </Design.DataContext>
-
-	<StackPanel>
-		<Button Content="Open DICOM File" Click="OnBrowseClicked" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+  <ScrollViewer>
+	<StackPanel Margin="10">
+		<Button Content="Open DICOM File" Click="OnBrowseClicked" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+		<TextBlock Text="{Binding FileName}"/>
 		<DataGrid Margin="20" ItemsSource="{Binding Tags}"
 			      AutoGenerateColumns="True" IsReadOnly="True"
 			      GridLinesVisibility="All"
@@ -24,9 +23,13 @@
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Tag" Binding="{Binding Tag}"/>
 				<DataGridTextColumn Header="VR" Binding="{Binding VR}"/>
-			<!--<DataGridTextColumn Header="Length" Binding="{Binding Length}"/>-->
+			    <DataGridTextColumn Header="Length" Binding="{Binding Length}"/>
 				<DataGridTextColumn Header="Value" Binding="{Binding Value}"/>
 			</DataGrid.Columns>
 		</DataGrid>
+		<Grid>
+			<Image  Source="{Binding ImageSource}" />
+		</Grid>
 	</StackPanel>
+  </ScrollViewer>
 </Window>

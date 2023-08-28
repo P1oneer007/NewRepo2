@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace Dicom_viewer.ViewModels
+﻿namespace Dicom_viewer.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {

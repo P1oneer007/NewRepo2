@@ -25,6 +25,5 @@
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.4" />
     <PackageReference Include="fo-dicom" Version="5.1.1" />
     <PackageReference Include="fo-dicom.NetCore" Version="4.0.8" />
-    <PackageReference Include="Microsoft.PowerShell.5.ReferenceAssemblies" Version="1.1.0" />
   </ItemGroup>
 </Project>

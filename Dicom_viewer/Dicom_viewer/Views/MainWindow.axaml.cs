@@ -3,11 +3,10 @@ using Avalonia.Interactivity;
 using System.IO;
 using System.Threading.Tasks;
 using Dicom;
-using System;
 using Dicom_viewer.ViewModels;
+
 namespace Dicom_viewer.Views
 {
-    
     public partial class MainWindow : Window
     {
         string filePath = App.Settings.FilePath;
@@ -48,7 +47,6 @@ namespace Dicom_viewer.Views
             var file = DicomFile.Open(filePath, readOption: FileReadOption.ReadAll);
             var dicomDataset = file.Dataset;
             var studyInstanceUid = dicomDataset.GetSingleValue<string>(DicomTag.StudyInstanceUID);
-
         }
         public void OnBrowseClicked(object sender, RoutedEventArgs args)
         {

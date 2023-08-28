@@ -16,7 +16,6 @@ namespace Dicom_viewer
             {
                 return (Control)Activator.CreateInstance(type)!;
             }
-
             return new TextBlock { Text = "Not Found: " + name };
         }
 
