@@ -6,30 +6,50 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Dicom_viewer.Views.MainWindow"
         x:DataType="vm:DicomInfoViewModel"
+		WindowStartupLocation="CenterScreen"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Dicom_viewer" Width="950" Height="600">
+        Title="Dicom_viewer" Width="1300" Height="700">
 
     <Design.DataContext>
 		<vm:DicomInfoViewModel/>
     </Design.DataContext>
-  <ScrollViewer>
-	<StackPanel Margin="10">
-		<Button Content="Open DICOM File" Click="OnBrowseClicked" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-		<TextBlock Text="{Binding FileName}"/>
-		<DataGrid Margin="20" ItemsSource="{Binding Tags}"
-			      AutoGenerateColumns="True" IsReadOnly="True"
-			      GridLinesVisibility="All"
-				  BorderThickness="1" BorderBrush="Gray">
-			<DataGrid.Columns>
-				<DataGridTextColumn Header="Tag" Binding="{Binding Tag}"/>
-				<DataGridTextColumn Header="VR" Binding="{Binding VR}"/>
-			    <DataGridTextColumn Header="Length" Binding="{Binding Length}"/>
-				<DataGridTextColumn Header="Value" Binding="{Binding Value}"/>
-			</DataGrid.Columns>
-		</DataGrid>
-		<Grid>
-			<Image  Source="{Binding ImageSource}" />
-		</Grid>
-	</StackPanel>
-  </ScrollViewer>
+
+	<Window.Styles>
+		<Style Selector="TextBlock.h1">
+			<Setter Property="FontSize" Value="15"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+		</Style>
+	</Window.Styles>
+	
+	
+	<!---->
+	<ScrollViewer>  
+	  <Grid RowDefinitions="Auto, *">
+		<StackPanel Margin="10" Grid.Row="0">
+			<Button Content="Open DICOM File" Click="OnBrowseClicked" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+			<TextBlock Classes="h1" Text="{Binding FileName}"/>
+	    </StackPanel>
+
+		 <Grid Grid.Row="1"
+			   ColumnDefinitions="*,2*">
+			 <StackPanel Margin="10" Grid.Column="0">
+				 <Image  Source="{Binding ImageSource}" />
+			 </StackPanel>
+			 
+			 <StackPanel Grid.Column="1">
+				 <DataGrid Margin="10" ItemsSource="{Binding Tags}"
+					   AutoGenerateColumns="False" IsReadOnly="True"
+					   GridLinesVisibility="All"
+					   BorderThickness="1" BorderBrush="Gray">
+				 <DataGrid.Columns>
+					 <DataGridTextColumn Header="Tag" Binding="{Binding Tag}"/>
+					 <DataGridTextColumn Header="VR" Binding="{Binding VR}"/>
+					 <DataGridTextColumn Header="Length" Binding="{Binding Length}"/>
+					 <DataGridTextColumn Header="Value" Binding="{Binding Value}"/>
+				 </DataGrid.Columns> 
+				</DataGrid>
+			 </StackPanel>
+		 </Grid>
+		 </Grid>
+	</ScrollViewer>
 </Window>
